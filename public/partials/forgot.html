@@ -1,0 +1,25 @@
+<div class="container login-container">
+    <div class="panel">
+        <div class="panel-body">
+            <div ng-if="messages.error" role="alert" class="alert alert-danger">
+                <div ng-repeat="error in messages.error">{{error.msg}}</div>
+            </div>
+            <div ng-if="messages.success" role="alert" class="alert alert-success">
+                <div ng-repeat="success in messages.success">{{success.msg}}</div>
+            </div>
+            <form name="frmForgot" ng-submit="forgotPassword(frmForgot.$valid)" novalidate>
+                <legend>Forgot Password</legend>
+                <div class="form-group">
+                    <p>Enter your email address below and we'll send you password reset instructions.</p>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" class="form-control" ng-model="user.email" ng-maxlength="50" required autofocus>
+                    <p ng-show="submitted && frmForgot.email.$error.required" class="help-block">The field is required.</p>
+                    <p ng-show="frmForgot.email.$invalid && !frmForgot.email.$pristine" class="help-block">Enter a valid email.</p>
+                    <p ng-show="frmForgot.email.$error.maxlength" class="help-block">Email is too long.</p>
+                </div>
+                <button ng-click="goBack()" class="btn btn-danger">Cancel</button>
+                <button type="submit" class="btn btn-success" ng-click="submitted=true">Reset Password</button>
+            </form>
+        </div>
+    </div>
+</div>

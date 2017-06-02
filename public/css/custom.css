@@ -1,0 +1,12 @@
+.navbar-fixed-left {width:196px; position:absolute; border-radius:0; height:52%;}
+.navbar-fixed-left .navbar-nav > li {float:none; width:195px;}
+.navbar-fixed-left + .container {padding-left: 160px;}
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {margin-top:-50px; margin-left:140px;}
+.customCls{margin-left:195px; width:1100px; min-height:400px;}
+.navbar-nav li a{outline:none;}
+.btn {-moz-user-select:none; border:1px solid transparent; border-radius:4px; cursor:pointer; display:inline-block; font-size:14px; font-weight:normal; line-height:1.42857; margin-bottom:0; padding:6px 12px; text-align:center; vertical-align:middle; white-space:nowrap;}
+.btn-default {border-color: #cccccc;}
+.addbutton {float: right;}
+.right-table-panel{float:left;margin-top:20px;}
+.panelHeight{min-height:500px;}
+.help-block{color:#b61b17;}

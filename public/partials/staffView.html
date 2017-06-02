@@ -1,0 +1,41 @@
+<div class="container customCls" ng-init="staffById()">
+  	<div class="panel">
+    	<div class="panel-body">
+			<legend>View Staff</legend>
+      		
+      		<div class="form-group">
+				<label>Role :</label>
+				<span>{{staff.role_id.name}}</span>
+			</div>
+      		<div class="form-group">
+				<label>Name :</label>
+				<span>{{staff.name}}</span>
+			</div>
+			<div class="form-group">
+				<label>Email :</label>
+		  		<span>{{staff.email}}</span>
+			</div>
+			<div class="form-group">
+				<label>Address :</label>
+		  		<span>{{staff.address}}</span>
+			</div>
+			<div class="form-group">
+				<label">Education :</label>
+		  		<span>{{staff.education}}</span>
+			</div>
+			<div class="form-group">
+				<label>Work experience :</label>
+		  		<span>{{staff.work_experience}}</span>
+			</div>
+			<div class="form-group">
+				<label>Contact :</label>
+		  		<span>{{staff.contact}}</span>
+			</div>
+			<div class="form-group">
+				<label>Gender :</label>
+		  		<span>{{staff.gender}}</span>
+			</div>
+			<button ng-click="goBack()" class="btn btn-primary">Back</button>
+		</div>
+  	</div>
+</div>

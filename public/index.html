@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+    <head>
+        <base href="/">
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Patient Intake Web Application</title>
+        
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="/css/vendor/bootstrap.css"> -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/custom.css">
+
+        <!-- CSS for sweet alert -->
+        <link rel="stylesheet" href="http://rawgit.com/t4t5/sweetalert/master/dist/sweetalert.css">
+
+        <!-- CSS for Data-table -->
+        <link rel="stylesheet" href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+        <!--<link rel="stylesheet" href="/node_modules/ng-table/bundles/ng-table.min.css">-->
+
+        <!-- CSS for angular-toastr -->
+        <link rel="stylesheet" href="/css/angular-toastr.min.css">
+
+    </head>
+    <body ng-app="MyApp">
+        <div ng-include src="'partials/header.html'"></div>
+        <div ng-include ng-if="currentUser" src="'partials/left_navigation.html'"></div>
+        <div ng-view></div>
+        <div ng-include src="'partials/footer.html'"></div>
+
+        <script src="/js/lib/jquery.js"></script>
+        <script src="/js/lib/bootstrap.js"></script>
+        <script src="/js/lib/angular.js"></script>
+        <script src="/js/lib/angular-route.js"></script>
+        <script src="/js/lib/satellizer.js"></script>
+
+        <!-- JS for Data-table -->
+        <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+        <!--<script src="/node_modules/ng-table/bundles/ng-table.min.js"></script>-->
+
+        <!-- JS for sweet alert -->
+        <script src="http://rawgit.com/t4t5/sweetalert/master/dist/sweetalert.min.js"></script>
+        <script src="http://rawgit.com/tushariscoolster/ng-sweet-alert/master/ng-sweet-alert.js"></script>
+        
+        <!-- JS for checklist-model -->
+        <script src="/js/lib/checklist-model.js"></script> 
+
+        <!-- JS for angular-input-mask -->
+        <script src="/js/lib/angular-input-masks-dependencies.min.js"></script> 
+        <script src="/js/lib/angular-input-masks.min.js"></script> 
+
+        <!-- JS for Bootstrap datepicker -->
+        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
+        <!-- JS for angular-toastr -->
+        <script src="/js/lib/angular-toastr.tpls.min.js"></script>
+
+        <!-- JS for angular module -->
+        <script src="/js/app.js"></script>
+
+        <!-- Angular controller files -->
+        <!--<script src="/js/controllers/contact.js"></script>-->
+        <script src="/js/controllers/forgot.js"></script>
+        <script src="/js/controllers/header.js"></script>
+        <script src="/js/controllers/login.js"></script>
+        <script src="/js/controllers/profile.js"></script>
+        <script src="/js/controllers/reset.js"></script>
+        <script src="/js/controllers/signup.js"></script>
+        <script src="/js/controllers/role.js"></script>
+        <script src="/js/controllers/form.js"></script>
+        <script src="/js/controllers/staff.js"></script>
+        <script src="/js/controllers/patient.js"></script>
+        <script src="/js/controllers/speciality.js"></script>
+
+        <!-- Angular factory / services files -->
+        <!--<script src="/js/services/contact.js"></script>-->
+        <script src="/js/services/account.js"></script>
+        <script src="/js/services/role.js"></script>
+        <script src="/js/services/form.js"></script>
+        <script src="/js/services/staff.js"></script>
+        <script src="/js/services/patient.js"></script>
+        <script src="/js/services/speciality.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <!--<script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+              function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+              e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+              e.src='https://www.google-analytics.com/analytics.js';
+              r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>-->
+    </body>
+</html>

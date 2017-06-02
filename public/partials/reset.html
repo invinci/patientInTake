@@ -1,0 +1,35 @@
+<div class="container login-container">
+    <div class="panel">
+        <div class="panel-body">
+            <div ng-if="messages.error" role="alert" class="alert alert-danger">
+                <div ng-repeat="error in messages.error">{{error.msg}}</div>
+            </div>
+            <div ng-if="messages.success" role="alert" class="alert alert-success">
+                <div ng-repeat="success in messages.success">{{success.msg}}</div>
+            </div>
+            <form name="frmResetPwd" ng-submit="resetPassword(frmResetPwd.$valid)" novalidate>
+                <legend>Reset Password</legend>
+                <div class="form-group">
+                    <label for="password">New Password</label>
+                    <input type="password" name="password" id="password" placeholder="New password" class="form-control" ng-model="user.password" ng-minlength="6" ng-maxlength="15" autofocus required>
+                    <p ng-show="submitted && frmResetPwd.password.$error.required" class="help-block">The field is required.</p>
+                    <p ng-show="frmResetPwd.password.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="frmResetPwd.password.$error.maxlength" class="help-block">Password is too long.</p>
+                </div>
+                <div class="form-group">
+                    <label for="confirm">Confirm Password</label>
+                    <input type="password" name="confirm" id="confirm" placeholder="Confirm password" class="form-control" ng-model="user.confirm" ng-minlength="6" ng-maxlength="15" required>
+                    <p ng-show="submitted && frmResetPwd.confirm.$error.required" class="help-block">The field is required.</p>
+                    <p ng-show="frmResetPwd.confirm.$error.minlength" class="help-block">Password is too short.</p>
+                    <p ng-show="frmResetPwd.confirm.$error.maxlength" class="help-block">Password is too long.</p>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success" ng-click="submitted=true">Change Password</button>
+                </div>
+                <div class="form-group">
+                    <a href="">Go back to Login page</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

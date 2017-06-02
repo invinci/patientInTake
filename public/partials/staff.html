@@ -1,0 +1,108 @@
+<div class="container customCls" ng-init="staffList()">
+  	<div class="panel panelHeight">
+    	<div class="panel-body">
+			<legend>Manage Staff</legend>
+      	
+			<div class="col-md-12">
+				<form ng-submit="staffList()">
+					<div class="row">
+						<div class="col-md-4">
+							<input type="text" name="search" class="form-control" ng-model="search" placeholder="Search by name or email"/>
+						</div>
+						<div class="col-md-3">
+							<select name="role_id" class="form-control" ng-model="role_id">
+								<option value="">Select Role</option>
+								<option ng-repeat="result in role" value="{{result._id}}">{{result.name}}</option>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<select name="status" class="form-control" ng-model="status">
+								<option value="">Select Status</option>
+								<option value="active">Active</option>
+								<option value="deactive">Deactive</option>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<input type="submit" value="Search" class="btn btn-primary"/>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-12">
+				<section class="addbutton">
+					<a class="btn btn-default icon-file-alt" title="Add staff" href="/staff/add">Add Staff</a>
+				</section>
+			</div>
+			<div class="col-md-12 right-table-panel">
+				<table class="table table-bordered" ng-table="tableParams">
+					<thead>
+						<tr>
+							<th>
+								<input type="checkbox" ng-model="checkAll.val" ng-change="selectAllGroup(checkAll.val)" class="group-checkable"/>
+							</th>
+							<th>
+								<a ng-click="sortType = 'name'; sortReverse = !sortReverse; sortOrderby('name',sortReverse);" class="cursor-pointer"><strong>Name</strong></a>
+							</th>
+							<th>
+								<a ng-click="sortType = 'role_id'; sortReverse = !sortReverse; sortOrderby('role_id',sortReverse);" class="cursor-pointer"><strong>Role</strong></a>
+							</th>
+							<th>
+								<a ng-click="sortType = 'email'; sortReverse = !sortReverse; sortOrderby('email',sortReverse);" class="cursor-pointer"><strong>Email</strong></a>
+							</th>
+							<th>
+								<a ng-click="sortType = 'is_status'; sortReverse = !sortReverse; sortOrderby('is_status',sortReverse);" class="cursor-pointer"><strong>Status</strong></a>
+							</th>
+							<th>
+								<a ng-click="sortType = 'created'; sortReverse = !sortReverse; sortOrderby('created',sortReverse);" class="cursor-pointer"><strong>Created</strong></a>
+							</th>
+							<th>
+								<a ng-click="sortType = 'modified'; sortReverse = !sortReverse; sortOrderby('modified',sortReverse);" class="cursor-pointer"><strong>Modified</strong></a>
+							</th>
+							<th>Action</th>		
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-center" ng-repeat="x in $data">
+							<td>
+								<input type="checkbox" checklist-model="selectedStaff.staff" checklist-value="x._id"/>
+							</td>
+							<td>{{x.name}}</td>
+							<td>{{x.role_id.name}}</td>
+							<td>{{x.email}}</td>
+							<td ng-if='x.is_status'>Active</td>
+							<td ng-if='!x.is_status'>Deactive</td>
+							<td>{{x.created | date:'MMM dd, yyyy'}}</td>
+							<td>{{x.modified | date:'MMM dd, yyyy'}}</td>
+							<td data-title="'Actions'" >
+								<a title="Edit" ng-href="/staff/edit/{{x._id}}"><img src="img/edit.png" /></a>
+								
+								<a title="Delete" href="javascript:void(0);" sweetalert sweet-options="{{sweet.option}}" sweet-confirm-option="{{sweet.confirm}}" sweet-cancel-option="{{sweet.cancel}}" name="login-submit" sweet-on-confirm="staffDelete(x._id)"><img src="img/delete.png" /></a>
+
+								<a title="view" ng-href="/staff/view/{{x._id}}"><img src="img/view.png" /></a>
+							</td>
+						</tr>
+						<tr class="text-center" ng-show="!$data.length">
+					    	<td colspan="8">No records found</td>
+					    </tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12">
+				<form ng-submit="performAction()">
+					<div class="row">
+						<div class="col-md-2">
+							<select id="selectedAction" name="selectedAction" ng-model="selectedAction" class="form-control">
+								<option value="">Select Status</option>
+								<option value="active">Active</option>
+								<option value="deactive">Deactive</option>
+							</select>
+						</div>
+						<div class="col-md-4">
+							<input type="submit" value="Submit" class="btn btn-primary" />
+						</div>
+					</div>
+				</form>
+			</div>
+    	</div>
+  	</div>
+</div>

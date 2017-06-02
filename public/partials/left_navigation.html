@@ -1,0 +1,22 @@
+<div class="navbar navbar-inverse navbar-fixed-left">
+    <ul class="nav navbar-nav" ng-controller="HeaderCtrl">
+        <li ng-class="{active: $route.current.activetab == 'dashboard'}">
+            <a href="/dashboard">Dashboard</a>
+        </li>
+        <li ng-class="{active: $route.current.activetab == 'roles'}">
+            <a href="/roles">Manage Roles</a>
+        </li>
+        <li ng-class="{active: $route.current.activetab == 'staff'}">
+            <a href="/staff">Manage Staff</a>
+        </li>
+        <li ng-class="{active: $route.current.activetab == 'patients'}">
+            <a href="/patients">Manage Patients</a>
+        </li>
+        <li ng-class="{active: $route.current.activetab == 'speciality'}">
+            <a href="/speciality">Manage Speciality</a>
+        </li>
+        <li ng-class="{active: $route.current.activetab == 'forms'}">
+            <a href="/forms">Manage Forms</a>
+        </li>
+    </ul>
+</div>

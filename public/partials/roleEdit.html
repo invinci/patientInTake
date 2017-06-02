@@ -1,0 +1,18 @@
+<div class="container customCls" ng-init="roleById()">
+  	<div class="panel">
+    	<div class="panel-body">
+			<legend>Edit Role</legend>
+      	
+			<form name="frmRoleEdit" ng-submit="roleEdit(frmRoleEdit.$valid)" novalidate>
+				<div class="form-group">
+			  		<label>Name</label>
+			  		<input type="text" name="name" id="name" placeholder="Name" class="form-control" ng-model="role.name" maxlength="30" autofocus required>
+			  		<p ng-show="submitted && frmRoleEdit.name.$error.required" class="help-block">The field is required</p>
+			  		<p ng-show="frmRoleEdit.name.$error.maxlength" class="help-block">Name is too long.</p>
+				</div>
+				<button ng-click="goBack()" class="btn btn-danger">Cancel</button>
+				<button type="submit" class="btn btn-success" ng-click="submitted=true">Save</button>
+			</form>
+		</div>
+  	</div>
+</div>

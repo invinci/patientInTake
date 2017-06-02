@@ -1,0 +1,34 @@
+{
+  "name": "patientintakeweb",
+  "version": "1.0.0",
+  "description": "My app description",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Anuj Sharma",
+  "dependencies": {
+    "angular-h-sweetalert": "^2.0.1",
+    "angular-input-masks": "^2.6.0",
+    "async": "^1.5.2",
+    "bcrypt-nodejs": "^0.0.3",
+    "body-parser": "^1.15.1",
+    "checklist-model": "^0.11.0",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "express-validator": "^2.20.4",
+    "jsonwebtoken": "^5.7.0",
+    "moment": "^2.12.0",
+    "mongoose": "^4.4.8",
+    "morgan": "^1.7.0",
+    "ng-sweet-alert": "^1.0.11",
+    "ng-table": "^3.0.1",
+    "nodemailer": "^2.3.0",
+    "request": "^2.69.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "6.1.0"
+  }
+}

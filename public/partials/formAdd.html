@@ -1,0 +1,23 @@
+<div class="container customCls">
+  	<div class="panel">
+    	<div class="panel-body">
+			<legend>Add Form</legend>
+      	
+			<form name="frmFormAdd" ng-submit="formAdd(frmFormAdd.$valid)" novalidate>
+				<div class="form-group">
+				  	<label>Name</label>
+				  	<input type="text" name="name" id="name" placeholder="Name" class="form-control" ng-model="form.name" ng-maxlength="30" autofocus required>
+				  	<p ng-show="submitted && frmFormAdd.name.$error.required" class="help-block">The field is required</p>
+				  	<p ng-show="frmFormAdd.name.$error.maxlength" class="help-block">Name is too long.</p>
+				</div>
+				<div class="form-group">
+				  	<label>Description</label>
+				  	<textarea name="description" id="description" placeholder="Description" class="form-control" ng-model="form.description"></textarea>
+				</div>
+                
+				<button ng-click="goBack()" class="btn btn-danger">Cancel</button>
+				<button type="submit" class="btn btn-success" ng-click="submitted=true">Save</button>
+			</form>
+		</div>
+  	</div>
+</div>

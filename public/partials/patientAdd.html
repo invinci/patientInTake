@@ -1,0 +1,50 @@
+<div class="container customCls">
+  	<div class="panel">
+    	<div class="panel-body">
+			<legend>Add Patient</legend>
+      	
+			<form name="frmPatientAdd" ng-submit="patientAdd(frmPatientAdd.$valid)" novalidate>
+				<div class="form-group">
+				  	<label>Name</label>
+				  	<input type="text" name="name" id="name" placeholder="Name" class="form-control" ng-model="patient.name" ng-maxlength="30" autofocus required>
+				  	<p ng-show="submitted && frmPatientAdd.name.$error.required" class="help-block">The field is required</p>
+				  	<p ng-show="frmPatientAdd.name.$error.maxlength" class="help-block">Name is too long.</p>
+				</div>
+				<div class="form-group">
+				  	<label>DOB</label>
+				  	<input uib-datepicker-popup ng-click="open2()" is-open="popup2.opened" datepicker-options="dateOptions" close-text="Close" type="text" name="dob" id="dob" placeholder="DOB" class="form-control" ng-model="patient.dob" readonly required>
+				  	<p ng-show="submitted && frmPatientAdd.dob.$error.required" class="help-block">The field is required</p>
+				</div>
+				<div class="form-group">
+				  	<label>MRN</label>
+				  	<input type="text" name="mrn" id="mrn" placeholder="MRN" class="form-control" ng-model="patient.mrn" ng-maxlength="10" autofocus required>
+				  	<p ng-show="submitted && frmPatientAdd.mrn.$error.required" class="help-block">The field is required</p>
+				  	<p ng-show="frmPatientAdd.mrn.$error.maxlength" class="help-block">MRN is too long.</p>
+				</div>
+		        <div class="form-group">
+		            <label>Password</label>
+		            <input type="password" name="password" id="password" placeholder="Password" class="form-control" ng-model="patient.password" ng-minlength="6" ng-maxlength="20" required>
+		            <p ng-show="submitted && frmPatientAdd.password.$error.required" class="help-block">The field is required.</p>
+		            <p ng-show="frmPatientAdd.password.$error.minlength" class="help-block">Password is too short.</p>
+		            <p ng-show="frmPatientAdd.password.$error.maxlength" class="help-block">Password is too long.</p>
+		        </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="col-sm-12">
+                        <label class="radio-inline">
+                        <input type="radio" name="gender" value="M" ng-model="patient.gender" ng-checked="patient.gender === 'M'"><span>Male</span>
+                        </label>
+                        
+                        <label class="radio-inline">
+                        <input type="radio" name="gender" value="F" ng-model="patient.gender" ng-checked="patient.gender === 'F'"><span>Female</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row"></div>
+                
+				<button ng-click="goBack()" class="btn btn-danger">Cancel</button>
+				<button type="submit" class="btn btn-success" ng-click="submitted=true">Save</button>
+			</form>
+		</div>
+  	</div>
+</div>

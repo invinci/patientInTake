@@ -1,0 +1,74 @@
+<div class="container customCls" ng-init="staffById()">
+  	<div class="panel">
+    	<div class="panel-body">
+			<legend>Edit Staff</legend>
+      	
+			<form name="frmStaffEdit" ng-submit="staffEdit(frmStaffEdit.$valid)" novalidate>
+				<div class="form-group">
+				  	<label>Role</label>
+				  	<select name="role_id" id="role_id" class="form-control" ng-model="staff.role_id" ng-change="changeRole()">
+						<option value="">Select Role</option>
+						<option ng-repeat="result in role" value="{{result._id}}">{{result.name}}</option>
+					</select>
+				</div>
+				<div class="form-group">
+				  	<label>Name</label>
+				  	<input type="text" name="name" id="name" placeholder="Name" class="form-control" ng-model="staff.name" ng-maxlength="30" autofocus required>
+				  	<p ng-show="submitted && frmStaffEdit.name.$error.required" class="help-block">The field is required</p>
+				  	<p ng-show="frmStaffEdit.name.$error.maxlength" class="help-block">Name is too long.</p>
+				</div>
+				<div class="form-group">
+		            <label>Email</label>
+		            <input type="email" name="email" id="email" placeholder="Email" class="form-control" ng-model="staff.email" ng-maxlength="50" required>
+		            <p ng-show="submitted && frmStaffEdit.email.$error.required" class="help-block">The field is required.</p>
+		            <p ng-show="frmStaffEdit.email.$invalid && !frmStaffEdit.email.$pristine" class="help-block">Enter a valid email.</p>
+		            <p ng-show="frmStaffEdit.email.$error.maxlength" class="help-block">Email is too long.</p>
+		        </div>
+		        <div class="form-group" ng-if="selectedRole == 'doctor'">
+				  	<label>Speciality</label>
+				  	<select name="speciality_id" id="speciality_id" class="form-control" ng-model="staff.speciality_id">
+						<option value="">Select Speciality</option>
+						<option ng-repeat="res in speciality" value="{{res._id}}">{{res.name}}</option>
+					</select>
+				</div>
+				<div class="form-group" ng-if="selectedRole == 'doctor'">
+                    <label>Practice year</label>
+                    <input type="text" name="practice_year" id="practice_year" placeholder="Practice year" class="form-control" ng-maxlength="2" ng-model="staff.practice_year">
+                    <p ng-show="frmStaffAdd.practice_year.$error.maxlength" class="help-block">Practice year is too long.</p>
+                </div>
+		        <div class="form-group">
+				  	<label>Address</label>
+				  	<textarea name="address" id="address" placeholder="Address" class="form-control" ng-model="staff.address"></textarea>
+				</div>
+				<div class="form-group">
+				  	<label>Education</label>
+				  	<textarea name="education" id="education" placeholder="Education" class="form-control" ng-model="staff.education"></textarea>
+				</div>
+				<div class="form-group">
+				  	<label>Work experience</label>
+				  	<textarea name="work_experience" id="work_experience" placeholder="Work experience" class="form-control" ng-model="staff.work_experience"></textarea>
+				</div>
+				<div class="form-group">
+                    <label>Contact</label>
+                    <input type="text" name="contact" id="contact" placeholder="Contact" class="form-control" ng-model="staff.contact" ui-br-phone-number>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="col-sm-12">
+                        <label class="radio-inline">
+                        <input type="radio" name="gender" value="M" ng-model="staff.gender" ng-checked="staff.gender === 'M'"><span>Male</span>
+                        </label>
+                        
+                        <label class="radio-inline">
+                        <input type="radio" name="gender" value="F" ng-model="staff.gender" ng-checked="staff.gender === 'F'"><span>Female</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row"></div>
+                
+				<button ng-click="goBack()" class="btn btn-danger">Cancel</button>
+				<button type="submit" class="btn btn-success" ng-click="submitted=true">Save</button>
+			</form>
+		</div>
+  	</div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container customCls" ng-init="specialityById()">
+  	<div class="panel">
+    	<div class="panel-body">
+			<legend>Edit Speciality</legend>
+      	
+			<form name="frmSpecialityEdit" ng-submit="specialityEdit(frmSpecialityEdit.$valid)" novalidate>
+				<div class="form-group">
+			  		<label>Name</label>
+			  		<input type="text" name="name" id="name" placeholder="Name" class="form-control" ng-model="speciality.name" ng-maxlength="30" autofocus required>
+			  		<p ng-show="submitted && frmSpecialityEdit.name.$error.required" class="help-block">The field is required</p>
+			  		<p ng-show="frmSpecialityEdit.name.$error.maxlength" class="help-block">Name is too long.</p>
+				</div>
+
+				<div class="form-group">
+				  	<label>Forms</label>
+					<table class="table table-bordered">
+						<tbody>
+							<tr class="text-center" ng-repeat="x in form">
+								<td>
+									<input type="checkbox" checklist-model="speciality.form_id" checklist-value="x._id" />
+								</td>
+								<td>{{x.name}}</td>
+							</tr>
+							<tr class="text-center" ng-show="!form.length">
+						    	<td colspan="2">No forms available for selection</td>
+						    </tr>
+						</tbody>
+					</table>
+				</div>
+
+				<button ng-click="goBack()" class="btn btn-danger">Cancel</button>
+				<button type="submit" class="btn btn-success" ng-click="submitted=true">Save</button>
+			</form>
+		</div>
+  	</div>
+</div>
