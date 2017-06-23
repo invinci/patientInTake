@@ -171,3 +171,27 @@ exports.patientStatus = function(req, res) {
         })
     })
 }
+
+/**
+ * GET /get_total_patients
+ */
+exports.getTotalPatients = function(req, res) {
+    Patient.count({ is_deleted:false, is_status:true}, function(err, patient) {
+        if (!patient) {
+            return res.send({patient:0});
+        }
+        res.send({patient:patient});
+    });
+};
+
+/**
+ * PUT /get_patient_detail
+ */
+exports.getPatientDetail = function(req, res) {
+    Patient.findOne({ mrn:req.body.mrn, is_deleted:false, is_status:true}, function(err, patient) {
+        if (!patient) {
+            return res.status(401).send({msg:'No record found.'});
+        }
+        res.json({patient:patient});
+    });
+};

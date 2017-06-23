@@ -1,0 +1,56 @@
+<div class="container customCls" ng-init="appointmentList()">
+  	<div class="panel panelHeight">
+    	<div class="panel-body">
+			<legend>Manage Appointments</legend>
+      	
+			<div class="col-md-12">
+				<form ng-submit="appointmentList()">
+					<div class="row">
+						<div class="col-md-3">
+							<select name="doctor_id" class="form-control" ng-model="doctor_id">
+								<option value="">Select Doctor</option>
+								<option ng-repeat="result in doctor" value="{{result._id}}">{{result.name}}</option>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<select name="speciality_id" class="form-control" ng-model="speciality_id">
+								<option value="">Select Speciality</option>
+								<option ng-repeat="result in speciality" value="{{result._id}}">{{result.name}}</option>
+							</select>
+						</div>
+						<div class="col-md-2">
+							<input type="submit" value="Search" class="btn btn-primary"/>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-12 right-table-panel">
+				<table class="table table-bordered" ng-table="tableParams">
+					<thead>
+						<tr>
+							<th>
+								<a ng-click="sortType = 'name'; sortReverse = !sortReverse; sortOrderby('name',sortReverse);" class="cursor-pointer"><strong>Doctor</strong></a>
+							</th>
+							<th>
+								<a ng-click="sortType = 'speciality_id'; sortReverse = !sortReverse; sortOrderby('speciality_id',sortReverse);" class="cursor-pointer"><strong>Speciality</strong></a>
+							</th>
+							<th>Action</th>		
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-center" ng-repeat="x in $data">
+							<td>{{x.name}}</td>
+							<td>{{x.speciality_id.name}}</td>
+							<td data-title="'Actions'" >
+								<a title="Manage doctor appointments" ng-href="/appointments/{{x._id}}"><img src="img/view.png" /></a>
+							</td>
+						</tr>
+						<tr class="text-center" ng-show="!$data.length">
+					    	<td colspan="3">No records found</td>
+					    </tr>
+					</tbody>
+				</table>
+			</div>
+    	</div>
+  	</div>
+</div>

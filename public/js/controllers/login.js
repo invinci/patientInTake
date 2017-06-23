@@ -1,11 +1,16 @@
 angular.module('MyApp')
     .controller('LoginCtrl', function($scope, $rootScope, $location, $window, $auth) {
         
+        /*
+         * If user already logged in then redirect him to dashboard page
+         */
         if($rootScope.currentUser){
             $location.path('/dashboard');
         }
 
-        // Login
+        /*
+         * Login
+         */
         $scope.login = function(isValid) {
             if(isValid){
                 $auth.login($scope.user)
@@ -22,7 +27,9 @@ angular.module('MyApp')
             }
         };
 
-        // Authentication
+        /*
+         * Authentication
+         */
         $scope.authenticate = function(provider) {
             $auth.authenticate(provider)
             .then(function(response) {

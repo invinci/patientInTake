@@ -1,0 +1,61 @@
+<div class="container customCls" ng-init="questionList()">
+  	<div class="panel panelHeight">
+    	<div class="panel-body">
+			<legend>Manage questions for {{form.name}}</legend>
+      	
+			<div class="col-md-12">
+				<form ng-submit="questionList()">
+					<div class="row">
+						<div class="col-md-8">
+							<input type="text" name="search" class="form-control" ng-model="search" placeholder="Search by question"/>
+						</div>
+						<div class="col-md-2">
+							<input type="submit" value="Search" class="btn btn-primary"/>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-12">
+				<section class="addbutton">
+					<button class="btn btn-default icon-file-alt" title="Add question" ng-click="open()">Add Question</button>
+					
+					<a class="btn btn-default icon-file-alt" title="Add form" href="/forms">Back</a>
+				</section>
+			</div>
+			<div class="col-md-12 right-table-panel">
+				<table class="table table-bordered" ng-table="tableParams">
+					<thead>
+						<tr>
+							<th>
+								<a ng-click="sortType = 'question_name'; sortReverse = !sortReverse; sortOrderby('question_name',sortReverse);" class="cursor-pointer"><strong>Question</strong></a>
+							</th>
+							<th>
+								<a ng-click="sortType = 'created'; sortReverse = !sortReverse; sortOrderby('created',sortReverse);" class="cursor-pointer"><strong>Created</strong></a>
+							</th>
+							<th>
+								<a ng-click="sortType = 'modified'; sortReverse = !sortReverse; sortOrderby('modified',sortReverse);" class="cursor-pointer"><strong>Modified</strong></a>
+							</th>
+							<th>Action</th>		
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-center" ng-repeat="x in $data">
+							<td style="width:70%;">{{x.question_name}}</td>
+							<td style="width:12%;">{{x.created | date:'MMM dd, yyyy'}}</td>
+							<td style="width:12%;">{{x.modified | date:'MMM dd, yyyy'}}</td>
+							<td style="width:6%;">
+								<a title="Edit" href="javascript:void(0);" ng-click="edit(x._id)"><img src="img/edit.png" /></a>
+								
+								<a title="Delete" href="javascript:void(0);" sweetalert sweet-options="{{sweet.option}}" sweet-confirm-option="{{sweet.confirm}}" sweet-cancel-option="{{sweet.cancel}}" name="login-submit" sweet-on-confirm="questionDelete(x._id)"><img src="img/delete.png" /></a>
+								
+							</td>
+						</tr>
+						<tr class="text-center" ng-show="!$data.length">
+					    	<td colspan="8">No records found</td>
+					    </tr>
+					</tbody>
+				</table>
+			</div>
+    	</div>
+  	</div>
+</div>

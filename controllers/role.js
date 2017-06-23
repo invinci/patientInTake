@@ -1,5 +1,6 @@
 var Role = require('../models/Role');
-
+var User  = require('../models/User');
+var mongoose= require ('mongoose');
 /**
  * Login required middleware
  */
@@ -11,9 +12,11 @@ exports.ensureAuthenticated = function(req, res, next) {
     }
 };
 
+
 /**
  * PUT /role_list
  */
+
 exports.roleList = function(req, res) {
     var page = req.body.page, 
         count = req.body.count,
@@ -62,13 +65,13 @@ exports.roleAdd = function(req, res, next) {
         if (role) {
             return res.status(400).send({msg:'Role already exist.'});
         }
-        role = new Role({
-            name: rolename,
-            permission: []
-        });
-        role.save(function(err) {
-            if (err) return res.status(400).send({msg:'Something went wrong please try again.'});
+        var roles = new Role({
+            name: req.body.name
 
+        });
+        console.log("hello",roles);
+        roles.save(function(err) {
+            if (err) return res.status(400).send({msg:'Something went wrong please try again.'});
             res.send({msg:'Role has been saved successfully.'});
         });
     });
@@ -80,10 +83,35 @@ exports.roleAdd = function(req, res, next) {
 exports.getRoleById = function(req, res) {
     Role.findById(req.params.id, function(err, role) {
         if (!role) {
-            return res.status(401).send({msg:'No record found.'});
+            return res.status(401).send({ msg: 'No record found.'});
         }
-        res.json({role:role});
+        res.json({ role: role });
     });
+};
+
+// /**
+//  * GET /permission
+//  */
+// exports.getPermission = function(req, res) {
+//     Permission.find({}, function(err, permission) {
+//         console.log(permission);
+//         if (!permission) {
+//             return res.status(401).send({ msg: 'No record found.'});
+//         }
+//         res.json({ permission: permission });
+//     });
+// };
+
+exports.permissionAdd = function(req, res, next) {  
+    console.log(req.body.data);
+    role = new Role({
+    permission_controller:req.body.controller,
+    permission_action:req.body.action
+        });
+        
+        role.save(function(err) {
+            res.send({ msg: 'Role has been saved successfully.' });
+        });
 };
 
 /**

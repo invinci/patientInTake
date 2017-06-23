@@ -1,18 +1,26 @@
 <div class="container customCls">
   	<div class="panel">
     	<div class="panel-body">
-			<legend>Add Role</legend>
-      	
+			<legend>Add Role</legend>      	
 			<form name="frmRoleAdd" ng-submit="roleAdd(frmRoleAdd.$valid)" novalidate>
 				<div class="form-group">
-				  	<label>Name</label>
+				  	<label>Name</label>      
 				  	<input type="text" name="name" id="name" placeholder="Name" class="form-control" ng-model="role.name" ng-maxlength="30" autofocus required>
 				  	<p ng-show="submitted && frmRoleAdd.name.$error.required" class="help-block">The field is required</p>
 				  	<p ng-show="frmRoleAdd.name.$error.maxlength" class="help-block">Name is too long.</p>
 				</div>
+
+				<!-- permission section -->
+				<div  class="col-md-12" "> 
+				<legend>Permission Section</legend>
+					<label hidden id="userController" > user controller</label>
+					 <!-- <input type="hidden" value="userController" ng-model="role.permission[0].permission_controller" id="userController">  -->
+				     <label id="addUser">Add user</label>
+				     <input type="checkbox" name="permission_action" ng-model="permission_action" ng-click="isChecked($event)"/>
+				</div> <br>
 				<button ng-click="goBack()" class="btn btn-danger">Cancel</button>
 				<button type="submit" class="btn btn-success" ng-click="submitted=true">Save</button>
 			</form>
 		</div>
-  	</div>
+  	</div> 
 </div>

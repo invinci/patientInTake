@@ -1,0 +1,84 @@
+<div class="modal-content" ng-init="questionById(questionId)">
+	<div class="modal-header">
+		<button type="button" class="close" ng-click="cancel()">&times;</button>
+		<h4 class="modal-title">Question / Answer</h4>
+	</div>
+	<div class="modal-body">
+		
+		<form name="frmQuestionEdit" ng-submit="questionEdit(frmQuestionEdit.$valid)" novalidate>
+			<div class="form-group row">
+				<div class="col-md-6">
+				  	<label>Dependency question</label>
+				  	<select name="dependencyQuestion" id="dependencyQuestion" class="form-control" ng-model="question.dependencyQuestion" ng-change="changeDependency()">
+						<option value="">Select Dependent Question</option>
+						<option ng-if="questionId !== question._id" ng-repeat="question in questions" value="{{question._id}}">{{question.question_name}}</option>
+					</select>
+				</div>
+				<div class="col-md-6" ng-if="isDependentAnswer">
+				  	<label>Dependency answer</label>
+				  	<select name="dependencyAnswer" id="dependencyAnswer" class="form-control" ng-model="question.dependencyAnswer">
+						<option value="">Select Dependent Answer</option>
+						<option ng-repeat="answer in answers" value="{{answer._id}}">{{answer.answer_label}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-md-6">
+				  	<label>Question</label>
+				  	<input type="text" name="question_name" id="question_name" placeholder="Question" class="form-control" ng-model="question.question_name" ng-maxlength="60" autofocus required>
+				  	<p ng-show="submitted && frmQuestionEdit.question_name.$error.required" class="help-block">The field is required</p>
+				  	<p ng-show="frmQuestionEdit.question_name.$error.maxlength" class="help-block">Question is too long.</p>
+				</div>
+				<div class="col-md-6">
+				  	<label>Description</label>
+				  	<textarea name="question_description" id="question_description" placeholder="Description" class="form-control" ng-model="question.question_description"></textarea>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-md-6">
+				  	<label>Sort order</label>
+				  	<input type="number" min="0" max="10" name="question_sort" id="question_sort" placeholder="Sort order" class="form-control" ng-model="question.question_sort" ng-maxlength="2" required>
+				  	<p ng-show="submitted && frmQuestionEdit.question_sort.$error.required" class="help-block">The field is required</p>
+				  	<p ng-show="frmQuestionEdit.question_sort.$error.maxlength" class="help-block">Sort order is too long.</p>
+				  	<p ng-show="frmQuestionEdit.question_sort.$error.number" class="help-block">Number required.</p>
+				</div>
+				<div class="col-md-6">
+				  	<label>Type</label>
+				  	<select name="question_type" id="question_type" class="form-control" ng-model="question.question_type" ng-change="changeType()" required>
+						<option value="">Select Type</option>
+						<option ng-repeat="result in type" value="{{result.id}}">{{result.name}}</option>
+					</select>
+					<p ng-show="submitted && frmQuestionEdit.question_type.$error.required" class="help-block">The field is required</p>
+				</div>
+			</div>
+
+			<div style="margin-top:40px;margin-bottom:20px;" class="answerSection" ng-if="isTypeActive">
+				<div style="margin-bottom:20px;" class="row" ng-repeat="choice in choices">
+					<div class="col-md-6">
+					  	<label>Answer</label>
+					  	<input type="text" name="answer_label" placeholder="Answer" class="form-control" ng-model="question.answer[$index].answer_label" ng-maxlength="30" required>
+					  	<p ng-show="submitted && frmQuestionEdit.answer_label.$error.required" class="help-block">The field is required</p>
+			  			<p ng-show="frmQuestionEdit.answer_label.$error.maxlength" class="help-block">Name is too long.</p>
+					</div>
+					<div class="col-md-4">
+					  	<label>Answer value</label>
+					  	<input type="text" name="answer_value" placeholder="Answer value" class="form-control" ng-model="question.answer[$index].answer_value" ng-maxlength="30" required>
+					  	<p ng-show="submitted && frmQuestionEdit.answer_value.$error.required" class="help-block">The field is required</p>
+			  			<p ng-show="frmQuestionEdit.answer_value.$error.maxlength" class="help-block">Name is too long.</p>
+					</div>
+					<div class="col-md-1">
+						<label>&nbsp;</label>
+						<button ng-if="$index > 0" ng-show="$last" ng-click="removeChoice()" class="btn btn-danger btn-sm">Remove</button>
+					</div>
+				</div>
+				<button ng-click="addNewChoice()" class="btn btn-primary">Add more answer</button>
+            </div>
+
+			<button class="btn btn-success" ng-click="submitted=true">Save</button>
+		</form>
+
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" ng-click="cancel()">Close</button>
+	</div>
+</div>

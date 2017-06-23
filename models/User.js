@@ -16,7 +16,10 @@ var userSchema = new mongoose.Schema({
         ref: 'Role'
     },
     name: String,
-    email: { type: String, unique: true},
+    email: { 
+        type: String, 
+        unique: true
+    },
     password: String,
     passwordResetToken: String,
     passwordResetExpires: Date,
@@ -30,11 +33,26 @@ var userSchema = new mongoose.Schema({
     contact: String,
     education: String,
     work_experience: String,
-    is_status: {type: Boolean, default: true},
-    is_deleted: {type: Boolean, default: false},
-    last_login: {type: Date, default: Date.now},
-    created: {type: Date, default: Date.now},
-    modified: {type: Date, default: Date.now}
+    is_status: {
+        type: Boolean, 
+        default: true
+    },
+    is_deleted: {
+        type: Boolean, 
+        default: false
+    },
+    last_login: {
+        type: Date, 
+        default: Date.now
+    },
+    created: {
+        type: Date, 
+        default: Date.now
+    },
+    modified: {
+        type: Date, 
+        default: Date.now
+    }
 }, schemaOptions);
 
 userSchema.pre('save', function(next) {
@@ -71,5 +89,4 @@ userSchema.options.toJSON = {
 };
 
 var User = mongoose.model('User', userSchema);
-
 module.exports = User;

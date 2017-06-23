@@ -1,7 +1,9 @@
 angular.module('MyApp')
     .controller('StaffCtrl', function($scope, $rootScope, $routeParams, $location, toastr, NgTableParams, Staff) {
 
-        // Staff List
+        /*
+         * Staff List
+         */
         $scope.staffList = function() {
             if ($scope.sortType == '') {
                 $scope.sortType = 'created';
@@ -52,7 +54,9 @@ angular.module('MyApp')
             $scope.staffList()
         }
         
-        // Staff Add
+        /*
+         * Staff Add
+         */
         $scope.staffAdd = function(isValid) {
             if(isValid){
                 Staff.staffAdd($scope.staff)
@@ -72,7 +76,9 @@ angular.module('MyApp')
             }
         };
 
-        // Staff by Id
+        /*
+         * Staff by Id
+         */
         $scope.staffById = function() {
             Staff.staffById($routeParams.id)
             .then(function(response) {
@@ -86,7 +92,9 @@ angular.module('MyApp')
             });
         };
 
-        // Staff Edit
+        /*
+         * Staff Edit
+         */
         $scope.staffEdit = function(isValid) {
             if(isValid){
                 Staff.staffEdit($scope.staff)
@@ -106,7 +114,9 @@ angular.module('MyApp')
             }
         };
 
-        // Staff Delete
+        /*
+         * Staff Delete
+         */
         $scope.sweet = {};
         $scope.sweet.option = {
             title: "Are you sure?",
@@ -130,12 +140,16 @@ angular.module('MyApp')
             });
         };
 
-        // Cancel button
+        /*
+         * Cancel button
+         */
         $scope.goBack = function() {
             $location.path('/staff');
         };
 
-        // Check / uncheck all checkboxes in listing page
+        /*
+         * Check / uncheck all checkboxes in listing page
+         */
         $scope.checkAll = {};
         $scope.selectedStaff = {
             staff: []
@@ -156,7 +170,9 @@ angular.module('MyApp')
             }
         }
 
-        // Staff Status
+        /*
+         * Staff Status
+         */
         $scope.performAction = function() {
             $scope.selectedAction = selectedAction.value;
             if ($scope.selectedAction == "") {
@@ -188,11 +204,13 @@ angular.module('MyApp')
             }
         }
 
-        // Listing of Roles
+        /*
+         * Listing of Roles
+         */
         $scope.getRoles = function() {
             Staff.getRoles()
             .then(function(response) {
-                $rootScope.role = response.data.role;
+                $scope.role = response.data.role;
             })
             .catch(function(response) {
                 $scope.messages = {
@@ -202,27 +220,33 @@ angular.module('MyApp')
         };
         $scope.getRoles();
 
-        // Show / Hide section based on the select role
+        /*
+         * Show / Hide section based on the select role
+         */
         $scope.changeRole = function() {
             var $roleId = $scope.staff.role_id;
-            var $roleVal = $scope.role.filter(function (role) {
-                return role._id == $roleId;
-            })[0].name;
-            $rootScope.selectedRole = $roleVal;
+            changeRole($roleId);
         }
         function changeRole(data){
             var $roleId = data;
-            var $roleVal = $scope.role.filter(function (role) {
-                return role._id == $roleId;
-            })[0].name;
-            $rootScope.selectedRole = $roleVal;
+
+            $scope.selectedRole = false;
+            if($roleId === '5934d74c0e4f3911eb116dfa'){
+                $scope.selectedRole = true;
+            }
+            // var $roleVal = $scope.role.filter(function (role) {
+            //     return role._id == $roleId;
+            // })[0].name;
+            // $rootScope.selectedRole = $roleId;
         }
 
-        // Listing of Speciality
+        /*
+         * Listing of Speciality
+         */
         $scope.getSpeciality = function() {
             Staff.getSpeciality()
             .then(function(response) {
-                $rootScope.speciality = response.data.speciality;
+                $scope.speciality = response.data.speciality;
             })
             .catch(function(response) {
                 $scope.messages = {

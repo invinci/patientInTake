@@ -1,7 +1,9 @@
 angular.module('MyApp')
     .controller('ForgotCtrl', function($scope, $location, Account) {
         
-        // Forgot password
+        /*
+         * Forgot password
+         */
         $scope.forgotPassword = function(valid) {
             if(valid){
                 Account.forgotPassword($scope.user)
@@ -18,7 +20,9 @@ angular.module('MyApp')
             }
         };
 
-        // Cancel button
+        /*
+         * Cancel button
+         */
         $scope.goBack = function() {
             $location.path('/');
         };

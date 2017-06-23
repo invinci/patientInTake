@@ -64,7 +64,48 @@
 								
 								<a title="Delete" href="javascript:void(0);" sweetalert sweet-options="{{sweet.option}}" sweet-confirm-option="{{sweet.confirm}}" sweet-cancel-option="{{sweet.cancel}}" name="login-submit" sweet-on-confirm="specialityDelete(x._id)"><img src="img/delete.png" /></a>
 
-								<a title="view" ng-href="/speciality/view/{{x._id}}"><img src="img/view.png" /></a>
+								<!-- <a title="view" ng-href="/speciality/view/{{x._id}}"><img src="img/view.png" /></a> -->
+
+								<a data-toggle="modal" data-target="#myModal{{x._id}}" title="view"><img src="img/view.png" /></a>
+
+								<!-- Modal for view -->
+								<div class="modal right fade" id="myModal{{x._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<h4 class="modal-title" id="myModalLabel2">View Speciality</h4>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+													<div class="col-sm-3">
+														<label>Name</label>
+													</div>
+													<div class="col-sm-8">
+														<span>{{x.name}}</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-3">
+														<label>Forms</label>
+													</div>
+											  		<div class="col-sm-8">
+											  			<table class="table table-bordered">
+															<tbody>
+																<tr class="text-center" ng-repeat="res in form">
+																	<td>
+																		<input type="checkbox" ng-checked="x.form_id[$index] === res._id" ng-disabled="true" />
+																	</td>
+																	<td>{{res.name}}</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</td>
 						</tr>
 						<tr class="text-center" ng-show="!$data.length">

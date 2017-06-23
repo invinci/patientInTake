@@ -65,7 +65,7 @@ exports.formAdd = function(req, res, next) {
         }
         form = new Form({
             name: formname,
-            description: req.body.description.toLowerCase()
+            description: req.body.description
         });
         form.save(function(err) {
             if (err) return res.status(400).send({msg:'Something went wrong please try again.'});
@@ -102,7 +102,7 @@ exports.formEdit = function(req, res, next) {
             return res.status(401).send({msg:'No record found.'});
         }
         form.name = req.body.name.toLowerCase();
-        form.description = req.body.description.toLowerCase();
+        form.description = req.body.description;
         form.modified = Date.now();
         form.save(function(err) {
             if(err && err.code === 11000) return res.status(401).send({msg:'Form already exist.'});

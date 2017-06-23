@@ -1,0 +1,19 @@
+<div class="container customCls">
+  	<div class="panel panelHeight">
+    	<div class="panel-body">
+			<!-- <legend>Manage appintments for {{form.name}}</legend> -->
+			<legend>Manage appintments for Kavita</legend>
+      	
+			<div class="col-md-12">
+				<section class="addbutton">
+					<button class="btn btn-default icon-file-alt" title="Add question" ng-click="open()">Time Slot</button>
+					
+					<button class="btn btn-default icon-file-alt" title="Add question" ng-click="open()">Book Appointment</button>
+					
+					<a class="btn btn-default icon-file-alt" title="Add form" href="/forms">Back</a>
+				</section>
+			</div>
+			<div ui-calendar="uiConfig.calendar" ng-model="eventSources" class="right-table-panel"></div>
+    	</div>
+  	</div>
+</div>

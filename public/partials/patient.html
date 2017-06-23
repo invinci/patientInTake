@@ -75,7 +75,55 @@
 								
 								<a title="Delete" href="javascript:void(0);" sweetalert sweet-options="{{sweet.option}}" sweet-confirm-option="{{sweet.confirm}}" sweet-cancel-option="{{sweet.cancel}}" name="login-submit" sweet-on-confirm="patientDelete(x._id)"><img src="img/delete.png" /></a>
 
-								<a title="view" ng-href="/patients/view/{{x._id}}"><img src="img/view.png" /></a>
+								<!-- <a title="view" ng-href="/patients/view/{{x._id}}"><img src="img/view.png" /></a> -->
+
+								<a data-toggle="modal" data-target="#myModal{{x._id}}" title="view"><img src="img/view.png" /></a>
+
+								<!-- Modal for view -->
+								<div class="modal right fade" id="myModal{{x._id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<h4 class="modal-title" id="myModalLabel2">View Patient</h4>
+											</div>
+											<div class="modal-body">
+												<div class="row">
+													<div class="col-sm-3">
+														<label>Name</label>
+													</div>
+													<div class="col-sm-8">
+														<span>{{x.name}}</span>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-3">
+														<label>DOB</label>
+													</div>
+											  		<div class="col-sm-8">
+											  			<span>{{x.dob | date:'MMM dd, yyyy'}}</span>
+											  		</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-3">
+														<label>MRN</label>
+													</div>
+											  		<div class="col-sm-8">
+											  			<span>{{x.mrn}}</span>
+											  		</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-3">
+														<label>Gender</label>
+													</div>
+											  		<div class="col-sm-8">
+											  			<span>{{x.gender}}</span>
+											  		</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</td>
 						</tr>
 						<tr class="text-center" ng-show="!$data.length">

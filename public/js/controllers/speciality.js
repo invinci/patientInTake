@@ -1,7 +1,9 @@
 angular.module('MyApp')
     .controller('SpecialityCtrl', function($scope, $rootScope, $routeParams, $location, toastr, NgTableParams, Speciality) {
 
-        // Speciality List
+        /*
+         * Speciality List
+         */
         $scope.specialityList = function() {
             if ($scope.sortType == '') {
                 $scope.sortType = 'created';
@@ -48,7 +50,9 @@ angular.module('MyApp')
             $scope.specialityList()
         }
         
-        // Speciality Add
+        /*
+         * Speciality Add
+         */
         $scope.speciality = {form_id: []};
         $scope.specialityAdd = function(isValid) {
             if(isValid){
@@ -69,7 +73,9 @@ angular.module('MyApp')
             }
         };
 
-        // Speciality by Id
+        /*
+         * Speciality by Id
+         */
         $scope.specialityById = function() {
             Speciality.specialityById($routeParams.id)
             .then(function(response) {
@@ -80,7 +86,9 @@ angular.module('MyApp')
             });
         };
 
-        // Speciality Edit
+        /*
+         * Speciality Edit
+         */
         $scope.speciality = {form_id: []};
         $scope.specialityEdit = function(isValid) {
             if(isValid){
@@ -101,7 +109,9 @@ angular.module('MyApp')
             }
         };
 
-        // Speciality Delete
+        /*
+         * Speciality Delete
+         */
         $scope.sweet = {};
         $scope.sweet.option = {
             title: "Are you sure?",
@@ -125,12 +135,16 @@ angular.module('MyApp')
             });
         };
 
-        // Cancel button
+        /*
+         * Cancel button
+         */
         $scope.goBack = function() {
             $location.path('/speciality');
         };
 
-        // Check / uncheck all checkboxes in listing page
+        /*
+         * Check / uncheck all checkboxes in listing page
+         */
         $scope.checkAll = {};
         $scope.selectedSpeciality = {
             speciality: []
@@ -151,7 +165,9 @@ angular.module('MyApp')
             }
         }
 
-        // Speciality Status
+        /*
+         * Speciality Status
+         */
         $scope.performAction = function() {
             $scope.selectedAction = selectedAction.value;
             if ($scope.selectedAction == "") {
@@ -183,11 +199,13 @@ angular.module('MyApp')
             }
         }
 
-        // Listing of Forms
+        /*
+         * Listing of Forms
+         */
         $scope.getForms = function() {
             Speciality.getForms()
             .then(function(response) {
-                $rootScope.form = response.data.form;
+                $scope.form = response.data.form;
             })
             .catch(function(response) {
                 $scope.messages = {

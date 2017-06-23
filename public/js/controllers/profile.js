@@ -2,6 +2,9 @@ angular.module('MyApp')
     .controller('ProfileCtrl', function($scope, $rootScope, $location, $window, $auth, Account) {
         $scope.profile = $rootScope.currentUser;
 
+        /*
+         * Update profile
+         */
         $scope.updateProfile = function(valid) {
             if(valid){
                 Account.updateProfile($scope.profile)
@@ -20,6 +23,9 @@ angular.module('MyApp')
             }
         };
 
+        /*
+         * Change password
+         */
         $scope.changePassword = function(valid) {
             if(valid){
                 Account.changePassword($scope.profile)
@@ -36,45 +42,45 @@ angular.module('MyApp')
             }
         };
 
-    /*$scope.link = function(provider) {
-      $auth.link(provider)
-        .then(function(response) {
-          $scope.messages = {
-            success: [response.data]
-          };
-        })
-        .catch(function(response) {
-          $window.scrollTo(0, 0);
-          $scope.messages = {
-            error: [response.data]
-          };
-        });
-    };
-    $scope.unlink = function(provider) {
-      $auth.unlink(provider)
-        .then(function() {
-          $scope.messages = {
-            success: [response.data]
-          };
-        })
-        .catch(function(response) {
-          $scope.messages = {
-            error: [response.data]
-          };
-        });
-    };
+        /*$scope.link = function(provider) {
+          $auth.link(provider)
+            .then(function(response) {
+              $scope.messages = {
+                success: [response.data]
+              };
+            })
+            .catch(function(response) {
+              $window.scrollTo(0, 0);
+              $scope.messages = {
+                error: [response.data]
+              };
+            });
+        };
+        $scope.unlink = function(provider) {
+          $auth.unlink(provider)
+            .then(function() {
+              $scope.messages = {
+                success: [response.data]
+              };
+            })
+            .catch(function(response) {
+              $scope.messages = {
+                error: [response.data]
+              };
+            });
+        };
 
-    $scope.deleteAccount = function() {
-      Account.deleteAccount()
-        .then(function() {
-          $auth.logout();
-          delete $window.localStorage.user;
-          $location.path('/');
-        })
-        .catch(function(response) {
-          $scope.messages = {
-            error: [response.data]
-          };
-        });
-    };*/
-  });
+        $scope.deleteAccount = function() {
+          Account.deleteAccount()
+            .then(function() {
+              $auth.logout();
+              delete $window.localStorage.user;
+              $location.path('/');
+            })
+            .catch(function(response) {
+              $scope.messages = {
+                error: [response.data]
+              };
+            });
+        };*/
+    });

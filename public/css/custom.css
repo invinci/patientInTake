@@ -1,4 +1,4 @@
-.navbar-fixed-left {width:196px; position:absolute; border-radius:0; height:52%;}
+.navbar-fixed-left {width:196px; position:absolute; border-radius:0; height:74%;}
 .navbar-fixed-left .navbar-nav > li {float:none; width:195px;}
 .navbar-fixed-left + .container {padding-left: 160px;}
 .navbar-fixed-left .navbar-nav > li > .dropdown-menu {margin-top:-50px; margin-left:140px;}
@@ -10,3 +10,30 @@
 .right-table-panel{float:left;margin-top:20px;}
 .panelHeight{min-height:500px;}
 .help-block{color:#b61b17;}
+.cursor-pointer{cursor:pointer;}
+
+/*******************************
+* MODAL AS RIGHT SIDEBAR
+*******************************/
+.modal.right .modal-dialog {
+	position: fixed;
+	margin: auto;
+	width: 500px;
+	height: 100%;
+	-webkit-transform: translate3d(0%, 0, 0);
+	    -ms-transform: translate3d(0%, 0, 0);
+	     -o-transform: translate3d(0%, 0, 0);
+	        transform: translate3d(0%, 0, 0);
+}
+.modal.right .modal-content {height: 100%;overflow-y: auto;}
+.modal.right .modal-body {padding: 15px 15px 80px;text-align:left;}
+.modal.right.fade .modal-dialog {
+	right: -320px;
+	-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+	   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+	     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+	        transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+.modal.right.fade.in .modal-dialog {right: 0;}
+.modal-content {border-radius: 0;border: none;}
+.modal-header {border-bottom-color: #EEEEEE;background-color: #FAFAFA;text-align:left;}

@@ -1,5 +1,9 @@
 angular.module('MyApp')
     .controller('ResetCtrl', function($scope, $routeParams, Account) {
+        
+        /*
+         * Reset password
+         */
         $scope.resetPassword = function(valid) {
             if(valid){    
                 Account.resetPassword($routeParams.token, $scope.user)

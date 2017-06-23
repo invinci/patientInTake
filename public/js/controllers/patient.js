@@ -1,7 +1,9 @@
 angular.module('MyApp')
     .controller('PatientCtrl', function($scope, $rootScope, $routeParams, $location, toastr, NgTableParams, Patient) {
 
-        // Patient List
+        /*
+         * Patient List
+         */
         $scope.patientList = function() {
             if ($scope.sortType == '') {
                 $scope.sortType = 'created';
@@ -52,7 +54,9 @@ angular.module('MyApp')
             $scope.patientList()
         }
         
-        // Patient Add
+        /*
+         * Patient Add
+         */
         $scope.patientAdd = function(isValid) {
             if(isValid){
                 Patient.patientAdd($scope.patient)
@@ -72,7 +76,9 @@ angular.module('MyApp')
             }
         };
 
-        // Patient by Id
+        /*
+         * Patient by Id
+         */
         $scope.patientById = function() {
             Patient.patientById($routeParams.id)
             .then(function(response) {
@@ -83,7 +89,9 @@ angular.module('MyApp')
             });
         };
 
-        // Patient Edit
+        /*
+         * Patient Edit
+         */
         $scope.patientEdit = function(isValid) {
             if(isValid){
                 Patient.patientEdit($scope.patient)
@@ -103,7 +111,9 @@ angular.module('MyApp')
             }
         };
 
-        // Patient Delete
+        /*
+         * Patient Delete
+         */
         $scope.sweet = {};
         $scope.sweet.option = {
             title: "Are you sure?",
@@ -127,12 +137,16 @@ angular.module('MyApp')
             });
         };
 
-        // Cancel button
+        /*
+         * Cancel button
+         */
         $scope.goBack = function() {
             $location.path('/patients');
         };
 
-        // Check / uncheck all checkboxes in listing page
+        /*
+         * Check / uncheck all checkboxes in listing page
+         */
         $scope.checkAll = {};
         $scope.selectedPatient = {
             patient: []
@@ -153,7 +167,9 @@ angular.module('MyApp')
             }
         }
 
-        // Patient Status
+        /*
+         * Patient Status
+         */
         $scope.performAction = function() {
             $scope.selectedAction = selectedAction.value;
             if ($scope.selectedAction == "") {
@@ -185,8 +201,9 @@ angular.module('MyApp')
             }
         }
 
-
-        // Datepicker
+        /*
+         * Datepicker
+         */
         $scope.dateOptions = {
             dateDisabled: disabled,
             formatYear: 'yy',

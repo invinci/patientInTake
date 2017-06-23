@@ -10,22 +10,22 @@
 				  	<p ng-show="submitted && frmSpecialityAdd.name.$error.required" class="help-block">The field is required</p>
 				  	<p ng-show="frmSpecialityAdd.name.$error.maxlength" class="help-block">Name is too long.</p>
 				</div>
-
 				<div class="form-group">
 				  	<label>Forms</label>
 					<table class="table table-bordered">
 						<tbody>
 							<tr class="text-center" ng-repeat="x in form">
-								<td>
+								<td style="width:20%;">
 									<input type="checkbox" checklist-model="speciality.form_id" checklist-value="x._id" />
 								</td>
-								<td>{{x.name}}</td>
+								<td style="width:80%;">{{x.name}}</td>
 							</tr>
 							<tr class="text-center" ng-show="!form.length">
 						    	<td colspan="2">No forms available for selection</td>
 						    </tr>
 						</tbody>
 					</table>
+					<span>Hint : Check forms to be associated with this speciality</span>
 				</div>
 
 				<button ng-click="goBack()" class="btn btn-danger">Cancel</button>

@@ -1,7 +1,9 @@
 angular.module('MyApp')
     .controller('FormCtrl', function($scope, $rootScope, $routeParams, $location, toastr, NgTableParams, Form) {
 
-        // Form List
+        /*
+         * Form List
+         */
         $scope.formList = function() {
             if ($scope.sortType == '') {
                 $scope.sortType = 'created';
@@ -48,7 +50,9 @@ angular.module('MyApp')
             $scope.formList()
         }
         
-        // Form Add
+        /*
+         * Form Add
+         */
         $scope.formAdd = function(isValid) {
             if(isValid){
                 Form.formAdd($scope.form)
@@ -68,7 +72,9 @@ angular.module('MyApp')
             }
         };
 
-        // Form by Id
+        /*
+         * Form by Id
+         */
         $scope.formById = function() {
             Form.formById($routeParams.id)
             .then(function(response) {
@@ -79,7 +85,9 @@ angular.module('MyApp')
             });
         };
 
-        // Form Edit
+        /*
+         * Form Edit
+         */
         $scope.formEdit = function(isValid) {
             if(isValid){
                 Form.formEdit($scope.form)
@@ -99,7 +107,9 @@ angular.module('MyApp')
             }
         };
 
-        // Form Delete
+        /*
+         * Form Delete
+         */
         $scope.sweet = {};
         $scope.sweet.option = {
             title: "Are you sure?",
@@ -123,12 +133,16 @@ angular.module('MyApp')
             });
         };
 
-        // Cancel button
+        /*
+         * Cancel button
+         */
         $scope.goBack = function() {
             $location.path('/forms');
         };
 
-        // Check / uncheck all checkboxes in listing page
+        /*
+         * Check / uncheck all checkboxes in listing page
+         */
         $scope.checkAll = {};
         $scope.selectedForm = {
             form: []
@@ -149,7 +163,9 @@ angular.module('MyApp')
             }
         }
 
-        // Form Status
+        /*
+         * Form Status
+         */
         $scope.performAction = function() {
             $scope.selectedAction = selectedAction.value;
             if ($scope.selectedAction == "") {

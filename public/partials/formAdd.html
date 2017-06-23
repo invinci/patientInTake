@@ -12,7 +12,8 @@
 				</div>
 				<div class="form-group">
 				  	<label>Description</label>
-				  	<textarea name="description" id="description" placeholder="Description" class="form-control" ng-model="form.description"></textarea>
+				  	<textarea name="description" id="description" placeholder="Description" class="form-control" ng-model="form.description" ng-maxlength="500"></textarea>
+				  	<p ng-show="frmFormAdd.description.$error.maxlength" class="help-block">Description is too long.</p>
 				</div>
                 
 				<button ng-click="goBack()" class="btn btn-danger">Cancel</button>

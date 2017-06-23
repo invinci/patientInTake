@@ -9,6 +9,7 @@
   "dependencies": {
     "angular-h-sweetalert": "^2.0.1",
     "angular-input-masks": "^2.6.0",
+    "angular-ui-calendar": "^1.0.2",
     "async": "^1.5.2",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.15.1",

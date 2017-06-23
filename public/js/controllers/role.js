@@ -1,7 +1,9 @@
 angular.module('MyApp')
     .controller('RoleCtrl', function($scope, $rootScope, $routeParams, $location, toastr, NgTableParams, Role) {
-
-        // Role List
+        
+        /*
+         * Role List
+         */
         $scope.roleList = function() {
             if ($scope.sortType == '') {
                 $scope.sortType = 'created';
@@ -28,14 +30,8 @@ angular.module('MyApp')
                     data.field = $scope.sortType;
                     data.sortOrder = $scope.sortOrder;
                     return Role.role(data).then(function(successData) {
-                        //console.log(successData);
-                        // console.log('total', successData.data.total)
                         params.total(successData.data.total);
-                        //params.count([10,25,50,100]);
-                        // console.log('<<<<<<<<>>>>>>>>>', params.total(successData.data.total));
-                        //console.log('data',successData.data.data);
                         $scope.role = successData.data.role;
-                        // console.log('$scope.customers', $scope.customers);
                         return $scope.role;
                     }, function(error) {
                         console.log('error', error);
@@ -52,25 +48,23 @@ angular.module('MyApp')
                 $scope.sortOrder = -1;
             }
             $scope.roleList()
-        }
-        
-        // Role Add
+        };
+
+        /*
+         * Role Add
+         */
         $scope.roleAdd = function(isValid) {
             if(isValid){
-                Role.roleAdd($scope.role)
-                .then(function(response) {
-                    // $rootScope.messages = {
-                    //     success: [response.data]
-                    // };
+                 console.log("m here");
+                  {
 
+                  }
+                Role.roleAdd($scope.role)
+              .then(function(response) {
                     toastr.success(response.data.msg,'Success');
                     $location.path('/roles');
                 })
                 .catch(function(response) {
-                    // $scope.messages = {
-                    //     error: Array.isArray(response.data) ? response.data : [response.data]
-                    // };
-                    
                     if(response.data.constructor === Array){
                         for(var j=0; j<response.data.length; j++){
                             toastr.error(response.data[j].msg,'Error');
@@ -78,11 +72,54 @@ angular.module('MyApp')
                     }else{
                         toastr.error(response.data.msg,'Error');
                     }
+                   
                 });
             }
         };
 
-        // Role by Id
+        /*
+        * Permission Add
+        */
+        // $scope.addPermission= function(){
+        //     $scope.isChecked();
+        //     Role.addData()
+        //         .then(function(response) {
+        //            console.log('$scope.response'); 
+        //         })
+        //         .catch(function(response) {
+        //             $scope.messages = {
+        //                 error: Array.isArray(response.data) ? response.data : [response.data]
+        //             };
+        //         });
+        //     }
+
+            $scope.isChecked= function(event){
+            if(event.currentTarget.checked)
+            {  
+                var data={
+
+                 action:document.getElementById("addUser").innerHTML,
+                 controller:document.getElementById("userController").innerHTML
+                }
+                console.log(data);
+
+                // $scope.role.push(data);
+                // // console.log("$scope.role",$scope.role)
+
+                Role.addData(data)
+                .then(function(response) {
+                })
+                .catch(function(response) {
+                    $scope.messages = {
+                        error: Array.isArray(response.data) ? response.data : [response.data]
+                    };
+                });
+            }
+        };
+
+        /*
+         * Role by Id
+         */
         $scope.roleById = function() {
             Role.roleById($routeParams.id)
             .then(function(response) {
@@ -96,7 +133,9 @@ angular.module('MyApp')
             });
         };
 
-        // Role Edit
+        /*
+         * Role Edit
+         */
         $scope.roleEdit = function(isValid) {
             if(isValid){
                 Role.roleEdit($scope.role)
@@ -123,7 +162,9 @@ angular.module('MyApp')
             }
         };
 
-        // Role Delete
+        /*
+         * Role Delete
+         */
         $scope.sweet = {};
         $scope.sweet.option = {
             title: "Are you sure?",
@@ -164,12 +205,16 @@ angular.module('MyApp')
             });
         };
 
-        // Cancel button
+        /*
+         * Cancel button
+         */
         $scope.goBack = function() {
             $location.path('/roles');
         };
 
-        // Check / uncheck all checkboxes in listing page
+        /*
+         * Check / uncheck all checkboxes in listing page
+         */
         $scope.checkAll = {};
         $scope.selectedRole = {
             role: []
@@ -190,7 +235,9 @@ angular.module('MyApp')
             }
         }
 
-        // Role Status
+        /*
+         * Role Status
+         */
         $scope.performAction = function() {
             $scope.selectedAction = selectedAction.value;
             if ($scope.selectedAction == "") {

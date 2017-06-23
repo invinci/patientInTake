@@ -1,4 +1,4 @@
-<div class="container customCls" ng-controller="HeaderCtrl">
+<div class="container customCls" ng-controller="DashboardCtrl">
 	<div class="panel panelHeight">
     	<div class="panel-body">
 
@@ -8,7 +8,7 @@
       			<label>Last successfull login - {{currentUser.last_login | date:'MMM dd, yyyy - HH:mm:ss'}} Hrs</label>
 			</div>
 			<div class="form-group">
-      			<label>Total patient's - 100</label>
+      			<label>Total patient's - {{total_patient}}</label>
 			</div>
 
             <div class="right-table-list">

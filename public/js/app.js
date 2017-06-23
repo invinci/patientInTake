@@ -1,15 +1,8 @@
-angular.module('MyApp', ['ngRoute','satellizer','ng-sweet-alert','ngTable','checklist-model','ui.utils.masks','ui.bootstrap','toastr'])
+angular.module('MyApp', ['ui.calendar','ngRoute','satellizer','ng-sweet-alert','ngTable','checklist-model','ui.utils.masks','ui.bootstrap','toastr'])
     .config(function($routeProvider, $locationProvider, $authProvider) {
         $locationProvider.html5Mode(true);
 
         $routeProvider
-        /*.when('/', {
-            templateUrl: 'partials/home.html'
-        })
-        .when('/contact', {
-            templateUrl: 'partials/contact.html',
-            controller: 'ContactCtrl'
-        })*/
         .when('/', {
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl',
@@ -58,16 +51,6 @@ angular.module('MyApp', ['ngRoute','satellizer','ng-sweet-alert','ngTable','chec
             activetab: 'roles',
             resolve: { loginRequired: loginRequired }
         })
-        .when('/roles/view/:id', {
-            templateUrl: 'partials/roleView.html',
-            controller: 'RoleCtrl',
-            activetab: 'roles',
-            resolve: { loginRequired: loginRequired }
-        })
-        .when('/roles/delete/:id', {
-            controller: 'RoleCtrl',
-            resolve: { loginRequired: loginRequired }
-        })
         .when('/staff', {
             templateUrl: 'partials/staff.html',
             controller: 'StaffCtrl',
@@ -84,16 +67,6 @@ angular.module('MyApp', ['ngRoute','satellizer','ng-sweet-alert','ngTable','chec
             templateUrl: 'partials/staffEdit.html',
             controller: 'StaffCtrl',
             activetab: 'staff',
-            resolve: { loginRequired: loginRequired }
-        })
-        .when('/staff/view/:id', {
-            templateUrl: 'partials/staffView.html',
-            controller: 'StaffCtrl',
-            activetab: 'staff',
-            resolve: { loginRequired: loginRequired }
-        })
-        .when('/staff/delete/:id', {
-            controller: 'StaffCtrl',
             resolve: { loginRequired: loginRequired }
         })
         .when('/patients', {
@@ -114,16 +87,6 @@ angular.module('MyApp', ['ngRoute','satellizer','ng-sweet-alert','ngTable','chec
             activetab: 'patients',
             resolve: { loginRequired: loginRequired }
         })
-        .when('/patients/view/:id', {
-            templateUrl: 'partials/patientView.html',
-            controller: 'PatientCtrl',
-            activetab: 'patients',
-            resolve: { loginRequired: loginRequired }
-        })
-        .when('/patients/delete/:id', {
-            controller: 'PatientCtrl',
-            resolve: { loginRequired: loginRequired }
-        })
         .when('/forms', {
             templateUrl: 'partials/form.html',
             controller: 'FormCtrl',
@@ -142,14 +105,10 @@ angular.module('MyApp', ['ngRoute','satellizer','ng-sweet-alert','ngTable','chec
             activetab: 'forms',
             resolve: { loginRequired: loginRequired }
         })
-        .when('/forms/view/:id', {
-            templateUrl: 'partials/formView.html',
-            controller: 'FormCtrl',
+        .when('/questions/:id', {
+            templateUrl: 'partials/question.html',
+            controller: 'QuestionCtrl',
             activetab: 'forms',
-            resolve: { loginRequired: loginRequired }
-        })
-        .when('/forms/delete/:id', {
-            controller: 'FormCtrl',
             resolve: { loginRequired: loginRequired }
         })
         .when('/speciality', {
@@ -170,14 +129,16 @@ angular.module('MyApp', ['ngRoute','satellizer','ng-sweet-alert','ngTable','chec
             activetab: 'speciality',
             resolve: { loginRequired: loginRequired }
         })
-        .when('/speciality/view/:id', {
-            templateUrl: 'partials/specialityView.html',
-            controller: 'SpecialityCtrl',
-            activetab: 'speciality',
+        .when('/appointments', {
+            templateUrl: 'partials/appointment.html',
+            controller: 'AppointmentCtrl',
+            activetab: 'appointments',
             resolve: { loginRequired: loginRequired }
         })
-        .when('/speciality/delete/:id', {
-            controller: 'SpecialityCtrl',
+        .when('/appointments/:id', {
+            templateUrl: 'partials/doctorAppointment.html',
+            controller: 'AppointmentCtrl',
+            activetab: 'appointments',
             resolve: { loginRequired: loginRequired }
         })
         .otherwise({
@@ -187,22 +148,11 @@ angular.module('MyApp', ['ngRoute','satellizer','ng-sweet-alert','ngTable','chec
         $authProvider.loginUrl = '/login';
         $authProvider.signupUrl = '/signup';
         
-        /*$authProvider.facebook({
-          url: '/auth/facebook',
-          clientId: '980220002068787',
-          redirectUri: 'http://localhost:3000/auth/facebook/callback'
-        });
-        $authProvider.google({
-          url: '/auth/google',
-          clientId: '631036554609-v5hm2amv4pvico3asfi97f54sc51ji4o.apps.googleusercontent.com'
-        });*/
-
         function skipIfAuthenticated($location, $auth) {
             if ($auth.isAuthenticated()) {
                 $location.path('/');
             }
         }
-
         function loginRequired($location, $auth) {
             if (!$auth.isAuthenticated()) {
                 $location.path('/');

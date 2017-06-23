@@ -20,6 +20,7 @@ function generateToken(user) {
 /**
  * Login required middleware
  */
+
 exports.ensureAuthenticated = function(req, res, next) {
     if (req.isAuthenticated()) {
         next();
@@ -27,6 +28,21 @@ exports.ensureAuthenticated = function(req, res, next) {
         res.status(401).send({ msg: 'Unauthorized' });
     }
 };
+// /**
+//  * permissions allotted middleware
+//  */
+ 
+exports.permissionAuthenticated = function(req, res, next) {
+ Permission.find({},function(err, docs) {
+      var controller=docs[0].permission_controller;
+      var action= docs[0].permission_action;
+      console.log(action);
+        if (!controller)
+           res.status(401).send({ msg: 'Unauthorized' });
+        else
+           next();
+    });
+}
 
 /**
  * POST /login
@@ -476,7 +492,7 @@ exports.staffList = function(req, res) {
     User.count(query).exec(function(err, total) {
         if (err) return res.status(400).send({msg:'Something went wrong please try again.'});
         
-        User.find(query).populate('role_id').sort(sortObject).skip(skipNo).limit(count).exec(function(err, staff) {
+        User.find(query).populate('role_id').populate('speciality_id').sort(sortObject).skip(skipNo).limit(count).exec(function(err, staff) {
             if (err) return res.status(400).send({msg:'Something went wrong please try again.'});
 
             res.send({msg:'success',staff:staff,total:total,status:200});

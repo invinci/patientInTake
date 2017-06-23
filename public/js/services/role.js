@@ -18,6 +18,9 @@ angular.module('MyApp')
             },
             roleStatus: function(data) {
                 return $http.post('/role_status/', data);
+            },
+            addData: function(data) {
+               return $http.put('/permission_add/',data);
             }
         };
     });
